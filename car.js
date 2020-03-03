@@ -105,7 +105,7 @@ function draw(){
         if(key == 3){
             key = 0
         }
-        ctx.font = "bold 78px Consolas";
+        ctx.font = "78px a";
         ctx.textAlign = 'center'
         ctx.fillText(score,368,100)
     }else{
@@ -113,11 +113,11 @@ function draw(){
     }
     if(res == true){
         if(gameover == true){
-        ctx.font = "bold 48px Consolas";
+        ctx.font = "38px a";
         ctx.fillText("RESULT",368,texty-70)
-        ctx.font = "bold 88px Consolas";
+        ctx.font = "68px a";
         ctx.fillText("SCORE:"+score,368,texty)
-        ctx.font = "bold 58px Consolas";
+        ctx.font = "48px a";
         ctx.fillText("TAP OR SPACE TO RETRY",368,texty+150)
         
         texty-=texts
