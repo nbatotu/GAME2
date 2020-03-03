@@ -9,14 +9,21 @@ var res = false
 var key = 1
 var jx
 var oo
+var hari = new Image()
+hari.src="photo.png"
 var gameover = false
 var texts = 14
 var hx
 var jpos
+var retryok=false
 var texty = 700
 var ua = window.navigator.userAgent.toLowerCase();
 window.addEventListener("keydown", handleKeydown);
-
+if(ua.indexOf("windows nt") !== -1) {
+    document.addEventListener('click', onClick, false);
+}else{
+    document.addEventListener('touchstart', onClick, false);
+}
 function handleKeydown(e){
   console.log(event.keyCode)
   if(gameover == false){
@@ -41,18 +48,14 @@ function handleKeydown(e){
   }
 }
 //canvas.addEventListener('click', onClick, false);
-if(ua.indexOf("windows nt") !== -1) {
-    document.addEventListener('click', onClick, false);
-}else{
-    document.addEventListener('touchstart', onClick, false);
-}
+
 function draw(){
 
     ctx.clearRect(0,0,736,658)
     ctx.beginPath();
     ctx.fillRect(100,550,530,50)
-    ctx.fillRect(hx,500,160,50)
-    ctx.fillRect(jx,500,160,50)
+    ctx.drawImage(hari,hx,500)
+    ctx.drawImage(hari,jx,500)
     ctx.arc(x, y, 50, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
     ctx.fill()
     if(key == 0){
@@ -105,25 +108,21 @@ function draw(){
     }
     if(res == true){
         if(gameover == true){
-        ctx.font = "38px pixeled";
+        ctx.font = "28px pixeled";
         ctx.fillText("RESULT",368,texty-70)
-        ctx.font = "68px pixeled";
+        ctx.font = "48px pixeled";
         ctx.fillText("SCORE:"+score,368,texty)
-        ctx.font = "58px pixeled";
+        ctx.font = "38px pixeled";
         ctx.fillText("TAP TO RETRY",368,texty+150)
         
         texty-=texts
         texts-=0.2
         if(texts<0){
             texts=0
+            retryok=true
+            
         }
-        }
-
-        if(ua.indexOf("windows nt") !== -1) {
-    document.addEventListener('click', onClick, false);
-    }else{
-    document.addEventListener('touchstart', onClick, false);
-}
+    }
     }
     
 }
@@ -135,15 +134,21 @@ function gover(){
      res = true
 }
 function onClick(e){
+    var clickpos = e.pageX - canvas.offsetLeft
+    console.log(e.pageX - canvas.offsetLeft)
     if(gameover==false){
-        if(e.cilentX-canvas.x<368){
-            key+=1
+        if(clickpos<368){
+            key -= 1
         }else{
-            key-=1
+            key += 1
         }
     }else{
-        retryy()
+        if(retryok==true){
+            retryy()
+        }
+        
     }
+
 
 
 }
@@ -157,6 +162,7 @@ function retryy(){
     key = 1
     gameover = false
     texts = 14
+    retryok=false
     texty = 700
 }
 setInterval(draw,10)

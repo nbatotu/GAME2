@@ -4,3 +4,7 @@ body{
 canvas{
     background-color: honeydew;
 }
+@font-face {
+	font-family: 'pixeled';
+	src: url('Pixeled.ttf');
+}
