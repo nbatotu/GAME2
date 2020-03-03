@@ -15,6 +15,8 @@ var gameover = false
 var texts = 14
 var hx
 var jpos
+var sky = new Image()
+sky.src = "skyhill.png"
 var retryok=false
 var texty = 700
 var ua = window.navigator.userAgent.toLowerCase();
@@ -50,14 +52,17 @@ function handleKeydown(e){
 //canvas.addEventListener('click', onClick, false);
 
 function draw(){
-
+    
     ctx.clearRect(0,0,736,658)
+    ctx.drawImage(sky,0,0)
     ctx.beginPath();
-    ctx.fillRect(100,550,530,50)
+    
     ctx.drawImage(hari,hx,500)
     ctx.drawImage(hari,jx,500)
+    ctx.fillStyle = "rgb(181,43,43)";
     ctx.arc(x, y, 50, 0 * Math.PI / 180, 360 * Math.PI / 180, false ) ;
     ctx.fill()
+        ctx.fillStyle = "rgb(0, 0, 0)";
     if(key == 0){
         x = 168
     }else if(key == 1){
@@ -100,7 +105,7 @@ function draw(){
         if(key == 3){
             key = 0
         }
-        ctx.font = "48px pixeled";
+        ctx.font = "bold 78px Consolas";
         ctx.textAlign = 'center'
         ctx.fillText(score,368,100)
     }else{
@@ -108,12 +113,12 @@ function draw(){
     }
     if(res == true){
         if(gameover == true){
-        ctx.font = "28px pixeled";
+        ctx.font = "bold 48px Consolas";
         ctx.fillText("RESULT",368,texty-70)
-        ctx.font = "48px pixeled";
+        ctx.font = "bold 88px Consolas";
         ctx.fillText("SCORE:"+score,368,texty)
-        ctx.font = "38px pixeled";
-        ctx.fillText("TAP TO RETRY",368,texty+150)
+        ctx.font = "bold 58px Consolas";
+        ctx.fillText("TAP OR SPACE TO RETRY",368,texty+150)
         
         texty-=texts
         texts-=0.2
