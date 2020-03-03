@@ -134,7 +134,8 @@ function gover(){
      res = true
 }
 function onClick(e){
-    var clickpos = e.pageX - canvas.offsetLeft
+    var touchObject = event.changedTouches[0] 
+    var clickpos = touchObject.pageX - canvas.offsetLeft
     console.log(e.pageX - canvas.offsetLeft)
     if(gameover==false){
         if(clickpos<368){
