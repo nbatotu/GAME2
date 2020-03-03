@@ -139,7 +139,7 @@ function onClick(e){
     if(gameover==false){
         if(clickpos<368){
             key -= 1
-        }else{
+        }else if(clickpos>368){
             key += 1
         }
     }else{
