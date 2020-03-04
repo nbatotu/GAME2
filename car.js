@@ -26,6 +26,14 @@ if(ua.indexOf("windows nt") !== -1) {
 }else{
     document.addEventListener('touchstart', onClick, false);
 }
+let lastTouch = 0;
+document.addEventListener('touchend', event => {
+  const now = window.performance.now();
+  if (now - lastTouch <= 500) {
+    event.preventDefault();
+  }
+  lastTouch = now;
+}, true);
 function handleKeydown(e){
   console.log(event.keyCode)
   if(gameover == false){
